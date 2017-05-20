@@ -33,7 +33,7 @@ public class AttackCommand extends Command {
     }
 
     @Override
-    public boolean beforeExcecution() {
+    public boolean beforeExecution() {
         return true;
     }
     

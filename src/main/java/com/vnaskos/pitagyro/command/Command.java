@@ -2,7 +2,6 @@ package com.vnaskos.pitagyro.command;
 
 import com.vnaskos.pitagyro.grammar.Syntax;
 import com.vnaskos.pitagyro.GameWorld;
-import com.vnaskos.pitagyro.hooks.CommandHook;
 import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.player.Enemy;
 import com.vnaskos.pitagyro.player.Player;
@@ -12,7 +11,7 @@ import com.vnaskos.pitagyro.player.Actor;
  *
  * @author Vasilis Naskos
  */
-public abstract class Command implements CommandHook {
+public abstract class Command {
     
     protected CommandArgument[] args;
     protected static Syntax[] syntax;
@@ -32,22 +31,21 @@ public abstract class Command implements CommandHook {
     }
     
     public void execute() {
-        boolean canBeExecuted = beforeExcecution();
+        boolean canExecute = beforeExecution();
         
-        if(!canBeExecuted) {
+        if(!canExecute) {
             System.out.println("Ts ts ts ts, den mporo na to kano auto tora");
             return;
         }
         
         executeCommand();
-        afterExcecution();
+        afterExecution();
     }
     
     protected abstract void executeCommand();
     public abstract void help();
-
-    @Override
-    public boolean beforeExcecution() {
+    
+    public boolean beforeExecution() {
         Location location = getCurrentLocation();
         Actor character = location.getLocationActor();
         
@@ -55,9 +53,8 @@ public abstract class Command implements CommandHook {
                 && character instanceof Enemy
                 && !character.isDead());
     }
-
-    @Override
-    public void afterExcecution() {
+    
+    public void afterExecution() {
         Location location = getCurrentLocation();
         Actor character = location.getLocationActor();
         
