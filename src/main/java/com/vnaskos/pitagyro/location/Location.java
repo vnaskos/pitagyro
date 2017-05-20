@@ -2,7 +2,7 @@ package com.vnaskos.pitagyro.location;
 
 import com.vnaskos.pitagyro.gate.Gate;
 import com.vnaskos.pitagyro.item.Item;
-import com.vnaskos.pitagyro.player.GameCharacter;
+import com.vnaskos.pitagyro.player.Actor;
 
 /**
  *
@@ -77,10 +77,10 @@ public interface Location {
     void addExit(Direction direction, Gate exit);
     
     /**
-     * Get the character of this location
+     * Get the actor of this location
      * example: Enemy
      * 
-     * @return GameCharacter
+     * @return Actor
      */
-    GameCharacter getLocationCharacter();
+    Actor getLocationActor();
 }

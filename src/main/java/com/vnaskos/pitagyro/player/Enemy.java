@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @author Vasilis Naskos
  */
-public class Enemy implements GameCharacter, Serializable {
+public class Enemy implements Actor, Serializable {
 
     private static final long serialVersionUID = -5864513890233672262L;
 

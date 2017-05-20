@@ -72,7 +72,7 @@ public class Player implements Serializable {
         return healthPoints;
     }
     
-    public void attackTo(GameCharacter character) {
+    public void attackTo(Actor character) {
         character.reduceHealthBy(attackPoints);
     }
 

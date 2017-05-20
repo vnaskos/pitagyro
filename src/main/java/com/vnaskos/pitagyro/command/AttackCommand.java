@@ -3,8 +3,8 @@ package com.vnaskos.pitagyro.command;
 import com.vnaskos.pitagyro.GameWorld;
 import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.player.Enemy;
-import com.vnaskos.pitagyro.player.GameCharacter;
 import com.vnaskos.pitagyro.player.Player;
+import com.vnaskos.pitagyro.player.Actor;
 
 /**
  *
@@ -17,25 +17,14 @@ public class AttackCommand extends Command {
         GameWorld gw = GameWorld.INSTANCE;
         Player player = gw.getPlayer();
         Location currentLocation = player.getPosition();
-        GameCharacter character = currentLocation.getLocationCharacter();
+        Actor actor = currentLocation.getLocationActor();
         
-        if(character == null) {
-            System.out.println("Noone to attack");
+        if(!isValidActor(actor)) {
             return;
         }
         
-        if(!(character instanceof Enemy)) {
-            System.out.println("Not an enemy");
-            return;
-        }
-        
-        if(character.isDead()) {
-            System.out.println("Character is Dead!");
-            return;
-        }
-        
-        player.attackTo(character);
-        System.out.println("Enemy HP: " + character.getHealthPoints());
+        player.attackTo(actor);
+        System.out.println("Enemy HP: " + actor.getHealthPoints());
     }
 
     @Override
@@ -45,6 +34,25 @@ public class AttackCommand extends Command {
 
     @Override
     public boolean beforeExcecution() {
+        return true;
+    }
+    
+    private boolean isValidActor(Actor actor) {
+        if (actor == null) {
+            System.out.println("Noone to attack");
+            return false;
+        }
+
+        if (!(actor instanceof Enemy)) {
+            System.out.println("Not an enemy");
+            return false;
+        }
+
+        if (actor.isDead()) {
+            System.out.println("Character is Dead!");
+            return false;
+        }
+        
         return true;
     }
     

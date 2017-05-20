@@ -5,8 +5,8 @@ import com.vnaskos.pitagyro.GameWorld;
 import com.vnaskos.pitagyro.hooks.CommandHook;
 import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.player.Enemy;
-import com.vnaskos.pitagyro.player.GameCharacter;
 import com.vnaskos.pitagyro.player.Player;
+import com.vnaskos.pitagyro.player.Actor;
 
 /**
  *
@@ -49,7 +49,7 @@ public abstract class Command implements CommandHook {
     @Override
     public boolean beforeExcecution() {
         Location location = getCurrentLocation();
-        GameCharacter character = location.getLocationCharacter();
+        Actor character = location.getLocationActor();
         
         return !(character != null
                 && character instanceof Enemy
@@ -59,7 +59,7 @@ public abstract class Command implements CommandHook {
     @Override
     public void afterExcecution() {
         Location location = getCurrentLocation();
-        GameCharacter character = location.getLocationCharacter();
+        Actor character = location.getLocationActor();
         
         if(character != null
                 && character instanceof Enemy

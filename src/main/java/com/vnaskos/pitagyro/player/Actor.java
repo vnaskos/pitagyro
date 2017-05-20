@@ -4,7 +4,7 @@ package com.vnaskos.pitagyro.player;
  *
  * @author Vasilis Naskos
  */
-public interface GameCharacter {
+public interface Actor {
     
     void act();
     boolean isDead();

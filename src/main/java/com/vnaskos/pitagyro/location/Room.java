@@ -3,10 +3,10 @@ package com.vnaskos.pitagyro.location;
 import com.vnaskos.pitagyro.gate.Gate;
 import com.vnaskos.pitagyro.hooks.LocationHook;
 import com.vnaskos.pitagyro.item.Item;
-import com.vnaskos.pitagyro.player.GameCharacter;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import com.vnaskos.pitagyro.player.Actor;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Room implements Location, LocationHook, Serializable {
     protected Map<Direction, Gate> exits;
     
     protected Map<String, Item> items;
-    protected GameCharacter roomCharacater;
+    protected Actor roomActor;
     
     public Room() {
         exits = new HashMap<>();
@@ -83,18 +83,18 @@ public class Room implements Location, LocationHook, Serializable {
     }
 
     @Override
-    public GameCharacter getLocationCharacter() {
-        return roomCharacater;
+    public Actor getLocationActor() {
+        return roomActor;
     }
 
-    public void setRoomCharacater(GameCharacter roomCharacater) {
-        this.roomCharacater = roomCharacater;
+    public void setRoomCharacater(Actor roomCharacater) {
+        this.roomActor = roomCharacater;
     }
 
     @Override
     public void playerEntered() {
         System.out.println("-> Vriskese " + getName());
-        GameCharacter character = getLocationCharacter();
+        Actor character = getLocationActor();
         if(character != null && !character.isDead()) {
             System.out.println("Ox maga mou, edo einai " + character.getName());
         }
