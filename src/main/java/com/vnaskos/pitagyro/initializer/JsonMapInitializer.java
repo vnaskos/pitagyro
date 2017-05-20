@@ -5,6 +5,7 @@ import com.vnaskos.pitagyro.location.Location;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,8 @@ public class JsonMapInitializer extends MapInitializer {
     public void initialize() {
         try {
             InputStream is = new FileInputStream("test_map.json");
-            initialLocation = (Location) JsonReader.jsonToJava(is, null);
+            HashMap<String, Object> jsonArgs = new HashMap<>();
+            initialLocation = (Location) JsonReader.jsonToJava(is, jsonArgs);
         } catch (IOException ex) {
             Logger.getLogger(JsonMapInitializer.class.getName()).log(Level.SEVERE, null, ex);
         }

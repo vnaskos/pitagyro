@@ -5,7 +5,6 @@ import com.vnaskos.pitagyro.hooks.LocationHook;
 import com.vnaskos.pitagyro.item.Item;
 import com.vnaskos.pitagyro.player.GameCharacter;
 import java.io.Serializable;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +19,12 @@ public class Room implements Location, LocationHook, Serializable {
     protected String name;
     protected String description;
     protected Map<Direction, Gate> exits;
+    
     protected Map<String, Item> items;
     protected GameCharacter roomCharacater;
     
     public Room() {
-        exits = new EnumMap<>(Direction.class);
+        exits = new HashMap<>();
         items = new HashMap<>();
     }
 
