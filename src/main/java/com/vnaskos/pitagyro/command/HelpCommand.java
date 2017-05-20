@@ -7,17 +7,28 @@ import com.vnaskos.pitagyro.grammar.Syntax;
  * @author Vasilis Naskos
  */
 public class HelpCommand extends Command {
-
-    static {
-        syntax = new Syntax[2];
-        syntax[0] = new Syntax.Builder().verb().build();
-        syntax[1] = new Syntax.Builder().verb().item().build();
-    }
     
     @Override
     public void executeCommand() {
-        String roomDescription = getCurrentLocation().getDescription();
-        System.out.println(roomDescription);
+        String helpText;
+        
+        if(args.length == 0) {
+            helpText = getCurrentLocation().getDescription();
+            System.out.println(helpText);
+        } else {
+            Object arg1 = args[0].getValue();
+            if(arg1 instanceof Command) {
+                ((Command) arg1).help();
+            }
+        }
+    }
+    
+    @Override
+    protected Syntax[] getSyntax() {
+        Syntax[] syntax = new Syntax[2];
+        syntax[0] = new Syntax.Builder().verb().build();
+        syntax[1] = new Syntax.Builder().verb().verb().build();
+        return syntax;
     }
 
     @Override

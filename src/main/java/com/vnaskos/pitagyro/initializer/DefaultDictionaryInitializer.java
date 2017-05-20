@@ -13,18 +13,28 @@ public class DefaultDictionaryInitializer implements Initializer {
     @Override
     public void initialize() throws Exception {
         Dictionary dictionary = DefaultDictionary.getInstance();
-        dictionary.registerCommand("pane", "com.vnaskos.pitagyro.command.GoCommand");
-        dictionary.registerCommand("xekleidose", "com.vnaskos.pitagyro.command.UnlockCommand");
-        dictionary.registerCommand("ase", "com.vnaskos.pitagyro.command.BetrayCommand");
-        dictionary.registerCommand("help", "com.vnaskos.pitagyro.command.HelpCommand");
-        dictionary.registerCommand("pare", "com.vnaskos.pitagyro.command.PickCommand");
-        dictionary.registerCommand("ftiakse", "com.vnaskos.pitagyro.command.MakeCommand");
-        dictionary.registerCommand("ftiaxe", "com.vnaskos.pitagyro.command.MakeCommand");
-        dictionary.registerCommand("attack", "com.vnaskos.pitagyro.command.AttackCommand");
-        dictionary.registerCommand("rixe", "com.vnaskos.pitagyro.command.DropCommand");
-        dictionary.registerCommand("save", "com.vnaskos.pitagyro.command.SaveCommand");
-        dictionary.registerCommand("load", "com.vnaskos.pitagyro.command.LoadCommand");
-        dictionary.registerCommand("items", "com.vnaskos.pitagyro.command.InventoryCommand");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.GoCommand",
+                "pane", "trexa", "go");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.UnlockCommand",
+                "xekleidose", "unlock");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.BetrayCommand",
+                "ase");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.HelpCommand",
+                "voitheia", "help");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.PickCommand",
+                "pare", "take");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.MakeCommand",
+                "ftiakse", "ftiaxe", "make");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.AttackCommand",
+                "epithesi", "attack");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.DropCommand",
+                "rixe", "drop");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.SaveCommand",
+                "save");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.LoadCommand",
+                "load");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.InventoryCommand",
+                "sakos", "antikeimena", "items");
         dictionary.registerWord("pirouni", Syntax.Type.ITEM);
         dictionary.registerWord("pita", Syntax.Type.ITEM);
         dictionary.registerWord("gyro", Syntax.Type.ITEM);

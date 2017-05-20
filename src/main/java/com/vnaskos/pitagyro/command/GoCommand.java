@@ -10,11 +10,6 @@ import com.vnaskos.pitagyro.location.Location;
  * @author Vasilis Naskos
  */
 public class GoCommand extends Command {
-
-    static {
-        syntax = new Syntax[1];
-        syntax[0] = new Syntax.Builder().verb().direction().build();
-    }
     
     @Override
     public void executeCommand() {
@@ -29,6 +24,13 @@ public class GoCommand extends Command {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    protected Syntax[] getSyntax() {
+        Syntax[] syntax = new Syntax[1];
+        syntax[0] = new Syntax.Builder().verb().direction().build();
+        return syntax;
     }
 
     @Override

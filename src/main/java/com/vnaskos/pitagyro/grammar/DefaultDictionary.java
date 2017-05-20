@@ -50,15 +50,17 @@ public class DefaultDictionary implements Dictionary {
     }
     
     @Override
-    public void registerCommand(String verb, String className)
+    public void registerCommand(String className, String... aliases)
             throws Exception {
-        registerWord(verb, Type.VERB);
-        
         Class<?> klass = Class.forName(className);
         Constructor<?> ctor = klass.getConstructor();
         Command c = (Command) ctor.newInstance();
         
-        commandsMap.put(verb, c);
+        for(String alias : aliases) {
+            registerWord(alias, Type.VERB);
+            commandsMap.put(alias, c);
+        }
+        
     }
     
 }

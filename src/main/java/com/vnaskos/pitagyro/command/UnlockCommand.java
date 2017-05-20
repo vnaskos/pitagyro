@@ -14,11 +14,6 @@ import com.vnaskos.pitagyro.player.Player;
  */
 public class UnlockCommand extends Command {
     
-    static {
-        syntax = new Syntax[1];
-        syntax[0] = new Syntax.Builder().verb().direction().item().build();
-    }
-    
     @Override
     public void executeCommand() {
         Location currentLocation = getCurrentLocation();
@@ -46,10 +41,16 @@ public class UnlockCommand extends Command {
             System.out.println("I porta xekleidose");
         }
     }
+    
+    @Override
+    protected Syntax[] getSyntax() {
+        Syntax[] syntax = new Syntax[1];
+        syntax[0] = new Syntax.Builder().verb().direction().item().build();
+        return syntax;
+    }
 
     @Override
     public void help() {
         System.out.println("example: unlock south door with key");
     }
-    
 }

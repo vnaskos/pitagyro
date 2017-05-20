@@ -53,9 +53,9 @@ public interface Dictionary {
      * @see recognizeCommand
      * 
      * @throws java.lang.Exception
-     * @param verb command name
      * @param className class which represents the command
+     * @param alias command alias names
      */
-    void registerCommand(String verb, String className) throws Exception;
+    void registerCommand(String className, String... alias) throws Exception;
     
 }

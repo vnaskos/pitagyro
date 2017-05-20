@@ -5,7 +5,6 @@ import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.player.Player;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
@@ -28,9 +27,7 @@ public class LoadCommand extends Command {
                 ObjectInput input = new ObjectInputStream(buffer)) {
             Player player = (Player) input.readObject();
             GameWorld.INSTANCE.setPlayer(player);
-        } catch (IOException ex) {
-            Logger.getLogger(LoadCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(LoadCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         

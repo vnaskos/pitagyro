@@ -26,7 +26,7 @@ public class AttackCommand extends Command {
         player.attackTo(actor);
         System.out.println("Enemy HP: " + actor.getHealthPoints());
     }
-
+    
     @Override
     public void help() {
         System.out.println("example: attack");

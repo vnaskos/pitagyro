@@ -14,7 +14,6 @@ import com.vnaskos.pitagyro.player.Actor;
 public abstract class Command {
     
     protected CommandArgument[] args;
-    protected static Syntax[] syntax;
     
     public void setArguments(CommandArgument[] args) {
         this.args = args;
@@ -50,6 +49,8 @@ public abstract class Command {
     }
     
     public boolean isSyntaxValid(Syntax givenSyntax) {
+        Syntax[] syntax = getSyntax();
+        
         if(syntax == null) {
             return false;
         }
@@ -61,6 +62,12 @@ public abstract class Command {
         }
         
         return false;
+    }
+    
+    protected Syntax[] getSyntax() {
+        Syntax[] syntax = new Syntax[1];
+        syntax[0] = new Syntax.Builder().verb().build();
+        return syntax;
     }
     
     protected boolean checkAliveEnemy() {
