@@ -12,49 +12,79 @@ import java.util.List;
  */
 public class DefaultCommandParser implements Parser {
 
+    private final Dictionary dictionary;
+    private final List<CommandArgument> args;
+    private final Syntax.Builder syntaxBuilder;
+    private Command command;
+
+    public DefaultCommandParser() {
+        this.dictionary = DefaultDictionary.getInstance();
+        this.args = new ArrayList<>();
+        this.syntaxBuilder = new Syntax.Builder();
+    }
+    
+    private void clearLastCommand() {
+        command = null;
+        args.clear();
+        syntaxBuilder.clear();
+    }
+    
     @Override
     public Command constructCommand(String[] tokens) throws Exception {
-        Dictionary dictionary = DefaultDictionary.getInstance();
-        
-        Command command = null;
-        List<CommandArgument> args = new ArrayList<>();
-        List<Syntax.Type> syntaxTypes = new ArrayList<>();
+        clearLastCommand();
         
         for(String token : tokens) {
             Syntax.Type tokenType = dictionary.recognizeToken(token);
            
-            if(tokenType == null) {
-                continue;
-            }
-            
-            syntaxTypes.add(tokenType);
-            
-            switch(tokenType) {
-                case VERB:
-                    command = dictionary.recognizeCommand(token);
-                    break;
-                case ITEM:
-                    args.add(new CommandArgument(token));
-                    break;
-                case DIRECTION:
-                    args.add(new CommandArgument(
-                            dictionary.recognizeDirection(token)));
-                    break;
+            if(tokenType != null) {
+                processToken(tokenType, token);
             }
         }
         
+        validateCommand();
+        
+        return command;
+    }
+
+    private void processToken(Syntax.Type tokenType, String token)
+            throws Exception {
+        syntaxBuilder.add(tokenType);
+        
+        switch(tokenType) {
+            case VERB:
+                processVerbToken(token);
+                break;
+            case ITEM:
+                args.add(new CommandArgument(token));
+                break;
+            case DIRECTION:
+                args.add(new CommandArgument(
+                        dictionary.recognizeDirection(token)));
+                break;
+        }
+    }
+    
+    private void processVerbToken(String verb) {
+        Command tmpCommand = dictionary.recognizeCommand(verb);
+        
+        if (command == null) {
+            command = tmpCommand;
+        } else {
+            args.add(new CommandArgument(tmpCommand));
+        }
+    }
+    
+    private void validateCommand() throws InvalidCommandException {
         if(command == null) {
             throw new InvalidCommandException("Invalid command");
         }
         
-        Syntax givenSyntax = new Syntax(syntaxTypes.toArray(new Syntax.Type[0]));
-        if(command.checkSyntax(givenSyntax)) {
-             throw new InvalidCommandException("Wrong syntax");
+        command.setArguments(args.toArray(new CommandArgument[0]));
+        
+        Syntax givenSyntax = syntaxBuilder.build();
+        if(!command.isSyntaxValid(givenSyntax)) {
+            throw new InvalidCommandException("Wrong syntax");
         }
-        
-        command.setArguments(args.toArray(new CommandArgument[]{}));
-        
-        return command;
     }
     
 }

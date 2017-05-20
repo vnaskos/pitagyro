@@ -52,6 +52,8 @@ public class Syntax {
             parts = new ArrayList<>();
         }
         
+        public Builder add(Type type) { parts.add(type); return this; }
+        
         public Builder verb() { parts.add(Type.VERB); return this; }
         
         public Builder item() { parts.add(Type.ITEM); return this; }
@@ -60,6 +62,10 @@ public class Syntax {
         
         public Syntax build() {
             return new Syntax(parts.toArray(new Type[]{}));
+        }
+        
+        public void clear() {
+            parts.clear();
         }
     }
 }

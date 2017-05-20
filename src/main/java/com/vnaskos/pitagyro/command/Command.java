@@ -49,9 +49,9 @@ public abstract class Command {
         return checkAliveEnemy();
     }
     
-    public boolean checkSyntax(Syntax givenSyntax) {
+    public boolean isSyntaxValid(Syntax givenSyntax) {
         if(syntax == null) {
-            return true;
+            return false;
         }
         
         for(Syntax s : syntax) {
