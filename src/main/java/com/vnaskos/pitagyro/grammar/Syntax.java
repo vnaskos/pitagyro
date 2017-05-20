@@ -1,5 +1,6 @@
 package com.vnaskos.pitagyro.grammar;
 
+import com.vnaskos.pitagyro.command.CommandArgument;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Syntax {
         private final List<Type> parts;
 
         public Builder() {
-            parts = new ArrayList<Type>();
+            parts = new ArrayList<>();
         }
         
         public Builder verb() { parts.add(Type.VERB); return this; }
@@ -60,6 +61,5 @@ public class Syntax {
         public Syntax build() {
             return new Syntax(parts.toArray(new Type[]{}));
         }
-        
     }
 }

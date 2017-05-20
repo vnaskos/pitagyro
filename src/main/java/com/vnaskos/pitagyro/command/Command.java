@@ -45,7 +45,25 @@ public abstract class Command {
     protected abstract void executeCommand();
     public abstract void help();
     
-    public boolean beforeExecution() {
+    protected boolean beforeExecution() {
+        return checkAliveEnemy();
+    }
+    
+    public boolean checkSyntax(Syntax givenSyntax) {
+        if(syntax == null) {
+            return true;
+        }
+        
+        for(Syntax s : syntax) {
+            if(s.equals(givenSyntax)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    protected boolean checkAliveEnemy() {
         Location location = getCurrentLocation();
         Actor character = location.getLocationActor();
         
@@ -54,7 +72,7 @@ public abstract class Command {
                 && !character.isDead());
     }
     
-    public void afterExecution() {
+    protected void afterExecution() {
         Location location = getCurrentLocation();
         Actor character = location.getLocationActor();
         

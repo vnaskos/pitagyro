@@ -18,6 +18,7 @@ public class DefaultCommandParser implements Parser {
         
         Command command = null;
         List<CommandArgument> args = new ArrayList<>();
+        List<Syntax.Type> syntaxTypes = new ArrayList<>();
         
         for(String token : tokens) {
             Syntax.Type tokenType = dictionary.recognizeToken(token);
@@ -25,6 +26,8 @@ public class DefaultCommandParser implements Parser {
             if(tokenType == null) {
                 continue;
             }
+            
+            syntaxTypes.add(tokenType);
             
             switch(tokenType) {
                 case VERB:
@@ -42,6 +45,11 @@ public class DefaultCommandParser implements Parser {
         
         if(command == null) {
             throw new InvalidCommandException("Invalid command");
+        }
+        
+        Syntax givenSyntax = new Syntax(syntaxTypes.toArray(new Syntax.Type[0]));
+        if(command.checkSyntax(givenSyntax)) {
+             throw new InvalidCommandException("Wrong syntax");
         }
         
         command.setArguments(args.toArray(new CommandArgument[]{}));
