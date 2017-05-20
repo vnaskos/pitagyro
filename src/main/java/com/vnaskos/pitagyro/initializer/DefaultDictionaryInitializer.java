@@ -35,9 +35,13 @@ public class DefaultDictionaryInitializer implements Initializer {
                 "load");
         dictionary.registerCommand("com.vnaskos.pitagyro.command.InventoryCommand",
                 "sakos", "antikeimena", "items");
+        dictionary.registerCommand("com.vnaskos.pitagyro.command.OpenCommand",
+                "anoixe", "open");
         dictionary.registerWord("pirouni", Syntax.Type.ITEM);
         dictionary.registerWord("pita", Syntax.Type.ITEM);
         dictionary.registerWord("gyro", Syntax.Type.ITEM);
+        dictionary.registerWord("psigeio", Syntax.Type.ITEM);
+        dictionary.registerWord("apola", Syntax.Type.ITEM);
     }
     
 }

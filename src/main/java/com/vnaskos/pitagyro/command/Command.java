@@ -2,6 +2,7 @@ package com.vnaskos.pitagyro.command;
 
 import com.vnaskos.pitagyro.grammar.Syntax;
 import com.vnaskos.pitagyro.GameWorld;
+import com.vnaskos.pitagyro.exception.InGameException;
 import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.player.Enemy;
 import com.vnaskos.pitagyro.player.Player;
@@ -37,11 +38,17 @@ public abstract class Command {
             return;
         }
         
-        executeCommand();
+        try {
+            executeCommand();
+        } catch (InGameException ex) {
+            System.out.println(ex.getMessage());
+            return;
+        }
+        
         afterExecution();
     }
     
-    protected abstract void executeCommand();
+    protected abstract void executeCommand() throws InGameException;
     public abstract void help();
     
     protected boolean beforeExecution() {

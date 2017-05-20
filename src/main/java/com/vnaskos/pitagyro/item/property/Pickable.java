@@ -7,6 +7,5 @@ package com.vnaskos.pitagyro.item.property;
 public interface Pickable {
     
     boolean canPick();
-    void pick();
     
 }

@@ -7,6 +7,7 @@ package com.vnaskos.pitagyro.item.property;
 public interface Openable {
     
     boolean canOpen();
+    boolean isOpen();
     void open();
     
 }

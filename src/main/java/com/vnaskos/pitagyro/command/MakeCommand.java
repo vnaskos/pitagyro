@@ -36,8 +36,9 @@ public class MakeCommand extends Command {
     
     @Override
     protected Syntax[] getSyntax() {
-        Syntax[] syntax = new Syntax[1];
+        Syntax[] syntax = new Syntax[2];
         syntax[0] = new Syntax.Builder().verb().item().item().build();
+        syntax[0] = new Syntax.Builder().verb().item().item().item().build();
         return syntax;
     }
 

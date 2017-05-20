@@ -3,6 +3,7 @@ package com.vnaskos.pitagyro.initializer;
 import com.cedarsoftware.util.io.JsonWriter;
 import com.vnaskos.pitagyro.PitaGyro;
 import com.vnaskos.pitagyro.gate.GateBuilder;
+import com.vnaskos.pitagyro.item.ContainerItem;
 import com.vnaskos.pitagyro.item.Item;
 import com.vnaskos.pitagyro.item.PassiveItem;
 import com.vnaskos.pitagyro.location.Direction;
@@ -36,9 +37,13 @@ public class TestMapInitializer extends MapInitializer {
         Item key = new PassiveItem("pirouni", "Key to unlock door 1");
         Item pita = new PassiveItem("pita", "PITAAAA");
         Item gyros = new PassiveItem("gyro", "Gyroooos");
+        Item apola = new PassiveItem("apola", "I perigrafi den einai diathesimi! To ap'ola orizete diaforetika se kathe poli");
+        ContainerItem psigeio = new ContainerItem("psigeio", "ena aplo psigeio", apola);
+        
         r1.addItem(key.getName(), key);
         r3.addItem(pita.getName(), pita);
         r2.addItem(gyros.getName(), gyros);
+        r4.addItem(psigeio.getName(), psigeio);
         
         Enemy e3 = new Enemy("o kardiologos", 30, 5, 0);
         r3.setRoomCharacater(e3);

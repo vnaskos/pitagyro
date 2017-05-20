@@ -1,12 +1,13 @@
 package com.vnaskos.pitagyro.item;
 
+import com.vnaskos.pitagyro.item.property.Pickable;
 import java.io.Serializable;
 
 /**
  *
  * @author Vasilis Naskos
  */
-public class PassiveItem implements Item, Serializable {
+public class PassiveItem implements Item, Pickable, Serializable {
 
     private static final long serialVersionUID = -7908094854560373594L;
 
@@ -46,6 +47,11 @@ public class PassiveItem implements Item, Serializable {
         }
         
         return this.hashCode() == obj.hashCode();
+    }
+
+    @Override
+    public boolean canPick() {
+        return true;
     }
     
 }

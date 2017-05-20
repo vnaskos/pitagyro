@@ -4,17 +4,9 @@ package com.vnaskos.pitagyro.exception;
  *
  * @author Vasilis Naskos
  */
-public class InvalidCommandException extends Exception {
-    
-    private final String message;
+public class InvalidCommandException extends InGameException {
     
     public InvalidCommandException(String message) {
-        this.message = message;
+        super(message);
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-    
 }
