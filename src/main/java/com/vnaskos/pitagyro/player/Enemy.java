@@ -39,14 +39,18 @@ public class Enemy implements Actor, Serializable {
     
     @Override
     public boolean isDead() {
-        return healthPoints == 0;
+        return healthPoints <= 0;
     }
 
     @Override
     public void reduceHealthBy(int value) {
-        healthPoints -= (value-defensePoints);
+        if((value-defensePoints) > healthPoints) {
+            healthPoints = 0;
+        } else {
+            healthPoints -= (value-defensePoints);
+        }
         
-        if(healthPoints <= 0) {
+        if(isDead()) {
             System.out.println("Enemy is DEAD!");
         }
     }

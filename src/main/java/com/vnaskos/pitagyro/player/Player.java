@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Vasilis Naskos
  */
-public class Player implements Serializable {
+public class Player implements Actor, Serializable {
 
     private static final long serialVersionUID = 7074074622932343214L;
     
@@ -20,7 +20,7 @@ public class Player implements Serializable {
     
     protected int healthPoints;
     protected int attackPoints;
-    protected int defensePoints;
+    protected int defencePoints;
     
     public Player(Location initialPosition) {
         position = initialPosition;
@@ -28,7 +28,7 @@ public class Player implements Serializable {
         
         healthPoints  = 100;
         attackPoints  = 10;
-        defensePoints = 1;
+        defencePoints = 1;
     }
 
     public Location getPosition() {
@@ -64,10 +64,30 @@ public class Player implements Serializable {
         return null;
     }
     
+    public void changeHealthBy(int value) {
+        healthPoints += value;
+    }
+    
+    public void changeAttackBy(int value) {
+        attackPoints += value;
+    }
+    
+    public void changeDefenceBy(int value) {
+        defencePoints += value;
+    }
+    
+    @Override
     public void reduceHealthBy(int value) {
-        healthPoints -= (value-defensePoints);
+        int decrease = value-defencePoints;
+        
+        if(decrease > healthPoints) {
+            decrease = healthPoints;
+        }
+        
+        changeHealthBy(-decrease);
     }
 
+    @Override
     public int getHealthPoints() {
         return healthPoints;
     }
@@ -78,5 +98,18 @@ public class Player implements Serializable {
 
     public Set<String> getInventoryContent() {
         return inventory.getContent();
+    }
+
+    @Override
+    public void act() {}
+
+    @Override
+    public boolean isDead() {
+        return healthPoints <= 0;
+    }
+
+    @Override
+    public String getName() {
+        return "O kaluteros pelatis ever";
     }
 }

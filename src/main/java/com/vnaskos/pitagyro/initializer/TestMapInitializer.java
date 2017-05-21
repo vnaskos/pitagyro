@@ -6,6 +6,8 @@ import com.vnaskos.pitagyro.gate.GateBuilder;
 import com.vnaskos.pitagyro.item.ContainerItem;
 import com.vnaskos.pitagyro.item.Item;
 import com.vnaskos.pitagyro.item.PassiveItem;
+import com.vnaskos.pitagyro.item.UsableItem;
+import com.vnaskos.pitagyro.item.property.Usable;
 import com.vnaskos.pitagyro.location.Direction;
 import com.vnaskos.pitagyro.location.Location;
 import com.vnaskos.pitagyro.location.Room;
@@ -39,11 +41,15 @@ public class TestMapInitializer extends MapInitializer {
         Item gyros = new PassiveItem("gyro", "Gyroooos");
         Item apola = new PassiveItem("apola", "I perigrafi den einai diathesimi! To ap'ola orizete diaforetika se kathe poli");
         ContainerItem psigeio = new ContainerItem("psigeio", "ena aplo psigeio", apola);
+        UsableItem<Integer> maxairi = new UsableItem<>("maxairi", Usable.UseCase.ATTACK, 10);
+        UsableItem<Integer> patates = new UsableItem<>("patates", Usable.UseCase.HEALTH, 5);
         
         r1.addItem(key.getName(), key);
+        r1.addItem(maxairi.getName(), maxairi);
         r3.addItem(pita.getName(), pita);
         r2.addItem(gyros.getName(), gyros);
         r4.addItem(psigeio.getName(), psigeio);
+        r4.addItem(patates.getName(), patates);
         
         Enemy e3 = new Enemy("o kardiologos", 30, 5, 0);
         r3.setRoomCharacater(e3);
