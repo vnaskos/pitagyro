@@ -66,6 +66,12 @@ public class Player implements Actor, Serializable {
     
     public void changeHealthBy(int value) {
         healthPoints += value;
+        
+        if(isDead()) {
+            System.out.println("--------------------------");
+            System.out.println(getName() + " einai nekros! :(");
+            System.exit(0);
+        }
     }
     
     public void changeAttackBy(int value) {
