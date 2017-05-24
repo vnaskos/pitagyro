@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  *
  * @author Vasilis Naskos
- * @param <T>
+ * @param <T> the type of the value
  */
 public class UsableItem<T> extends PassiveItem implements Usable, Serializable {
 

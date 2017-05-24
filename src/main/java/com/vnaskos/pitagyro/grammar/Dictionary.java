@@ -40,7 +40,7 @@ public interface Dictionary {
      * Add a new pair (word - type) to the dictionary
      * example: potion - Item
      * 
-     * @param word
+     * @param word in physical language
      * @param syntaxType Type 
      */
     void registerWord(String word, Type syntaxType);
@@ -52,7 +52,7 @@ public interface Dictionary {
      * Next step, in order to use them, is command recognition
      * @see recognizeCommand
      * 
-     * @throws java.lang.Exception
+     * @throws java.lang.Exception when command can't be created
      * @param className class which represents the command
      * @param alias command alias names
      */

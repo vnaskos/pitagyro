@@ -29,7 +29,7 @@ public interface Location {
     /**
      * Get an item which is contained in the location
      * 
-     * @param itemName
+     * @param itemName the name of item
      * @return Item
      */
     Item getItem(String itemName);
@@ -38,7 +38,7 @@ public interface Location {
      * Remove item from the location
      * Used mainly when player picks an item
      * 
-     * @param itemName
+     * @param itemName the name of the item
      * @return The item to be removed
      */
     Item removeItem(String itemName);
@@ -46,16 +46,16 @@ public interface Location {
     /**
      * Check if item exists in the location
      * 
-     * @param itemName
-     * @return boolean (true -> exists)
+     * @param itemName the name of the item
+     * @return boolean (true means it exists)
      */
     boolean itemExists(String itemName);
     
     /**
      * Place an item in the location
      * 
-     * @param itemName
-     * @param item 
+     * @param itemName the name of item
+     * @param item the actual item
      */
     void addItem(String itemName, Item item);
     
@@ -71,7 +71,7 @@ public interface Location {
     /**
      * Place a Gate on a given direction within the location
      * 
-     * @param direction
+     * @param direction in which direction the gate is placed
      * @param exit Gate
      */
     void addExit(Direction direction, Gate exit);
